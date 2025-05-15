@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/d/git_project/CurseProject2/server/RequestHandler.cpp" "server/CMakeFiles/server.dir/RequestHandler.cpp.o" "gcc" "server/CMakeFiles/server.dir/RequestHandler.cpp.o.d"
   "/mnt/d/git_project/CurseProject2/server/Server.cpp" "server/CMakeFiles/server.dir/Server.cpp.o" "gcc" "server/CMakeFiles/server.dir/Server.cpp.o.d"
   "/mnt/d/git_project/CurseProject2/server/Session.cpp" "server/CMakeFiles/server.dir/Session.cpp.o" "gcc" "server/CMakeFiles/server.dir/Session.cpp.o.d"
+  "/mnt/d/git_project/CurseProject2/server/Workspace.cpp" "server/CMakeFiles/server.dir/Workspace.cpp.o" "gcc" "server/CMakeFiles/server.dir/Workspace.cpp.o.d"
   "/mnt/d/git_project/CurseProject2/server/main.cpp" "server/CMakeFiles/server.dir/main.cpp.o" "gcc" "server/CMakeFiles/server.dir/main.cpp.o.d"
   )
 

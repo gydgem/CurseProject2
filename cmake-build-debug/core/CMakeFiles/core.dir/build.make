@@ -69,28 +69,28 @@ include core/CMakeFiles/core.dir/progress.make
 # Include the compile flags for this target's objects.
 include core/CMakeFiles/core.dir/flags.make
 
-core/CMakeFiles/core.dir/library.cpp.o: core/CMakeFiles/core.dir/flags.make
-core/CMakeFiles/core.dir/library.cpp.o: ../core/library.cpp
-core/CMakeFiles/core.dir/library.cpp.o: core/CMakeFiles/core.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/git_project/CurseProject2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object core/CMakeFiles/core.dir/library.cpp.o"
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT core/CMakeFiles/core.dir/library.cpp.o -MF CMakeFiles/core.dir/library.cpp.o.d -o CMakeFiles/core.dir/library.cpp.o -c /mnt/d/git_project/CurseProject2/core/library.cpp
+core/CMakeFiles/core.dir/base64.cpp.o: core/CMakeFiles/core.dir/flags.make
+core/CMakeFiles/core.dir/base64.cpp.o: ../core/base64.cpp
+core/CMakeFiles/core.dir/base64.cpp.o: core/CMakeFiles/core.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/git_project/CurseProject2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object core/CMakeFiles/core.dir/base64.cpp.o"
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT core/CMakeFiles/core.dir/base64.cpp.o -MF CMakeFiles/core.dir/base64.cpp.o.d -o CMakeFiles/core.dir/base64.cpp.o -c /mnt/d/git_project/CurseProject2/core/base64.cpp
 
-core/CMakeFiles/core.dir/library.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/library.cpp.i"
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/git_project/CurseProject2/core/library.cpp > CMakeFiles/core.dir/library.cpp.i
+core/CMakeFiles/core.dir/base64.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/core.dir/base64.cpp.i"
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/git_project/CurseProject2/core/base64.cpp > CMakeFiles/core.dir/base64.cpp.i
 
-core/CMakeFiles/core.dir/library.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/library.cpp.s"
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/git_project/CurseProject2/core/library.cpp -o CMakeFiles/core.dir/library.cpp.s
+core/CMakeFiles/core.dir/base64.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/core.dir/base64.cpp.s"
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/core && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/git_project/CurseProject2/core/base64.cpp -o CMakeFiles/core.dir/base64.cpp.s
 
 # Object files for target core
 core_OBJECTS = \
-"CMakeFiles/core.dir/library.cpp.o"
+"CMakeFiles/core.dir/base64.cpp.o"
 
 # External object files for target core
 core_EXTERNAL_OBJECTS =
 
-core/libcore.a: core/CMakeFiles/core.dir/library.cpp.o
+core/libcore.a: core/CMakeFiles/core.dir/base64.cpp.o
 core/libcore.a: core/CMakeFiles/core.dir/build.make
 core/libcore.a: core/CMakeFiles/core.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/git_project/CurseProject2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libcore.a"

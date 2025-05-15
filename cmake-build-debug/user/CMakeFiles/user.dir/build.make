@@ -92,8 +92,13 @@ user_EXTERNAL_OBJECTS =
 
 user/user: user/CMakeFiles/user.dir/main.cpp.o
 user/user: user/CMakeFiles/user.dir/build.make
-user/user: /usr/local/lib/libboost_system.so.1.87.0
 user/user: core/libcore.a
+user/user: /usr/local/lib/libboost_process.so.1.87.0
+user/user: /usr/local/lib/libboost_filesystem.so.1.87.0
+user/user: /usr/local/lib/libboost_system.so.1.87.0
+user/user: /usr/local/lib/libboost_atomic.so.1.87.0
+user/user: /usr/local/lib/libboost_context.so.1.87.0
+user/user: /usr/local/lib/libboost_date_time.so.1.87.0
 user/user: user/CMakeFiles/user.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/git_project/CurseProject2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable user"
 	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/user && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/user.dir/link.txt --verbose=$(VERBOSE)

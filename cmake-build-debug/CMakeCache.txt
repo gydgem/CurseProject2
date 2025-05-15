@@ -17,8 +17,12 @@
 //The directory containing a CMake configuration file for Boost.
 Boost_DIR:PATH=/usr/local/lib/cmake/Boost-1.87.0
 
+Boost_FILESYSTEM_LIBRARY_RELEASE:STRING=/usr/local/lib/libboost_filesystem.so.1.87.0
+
 //Path to a file.
 Boost_INCLUDE_DIR:PATH=/usr/local/include
+
+Boost_PROCESS_LIBRARY_RELEASE:STRING=/usr/local/lib/libboost_process.so.1.87.0
 
 Boost_SYSTEM_LIBRARY_RELEASE:STRING=/usr/local/lib/libboost_system.so.1.87.0
 
@@ -217,11 +221,29 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
+//The directory containing a CMake configuration file for boost_atomic.
+boost_atomic_DIR:PATH=/usr/local/lib/cmake/boost_atomic-1.87.0
+
+//The directory containing a CMake configuration file for boost_context.
+boost_context_DIR:PATH=/usr/local/lib/cmake/boost_context-1.87.0
+
+//The directory containing a CMake configuration file for boost_date_time.
+boost_date_time_DIR:PATH=/usr/local/lib/cmake/boost_date_time-1.87.0
+
+//The directory containing a CMake configuration file for boost_filesystem.
+boost_filesystem_DIR:PATH=/usr/local/lib/cmake/boost_filesystem-1.87.0
+
 //The directory containing a CMake configuration file for boost_headers.
 boost_headers_DIR:PATH=/usr/local/lib/cmake/boost_headers-1.87.0
 
+//The directory containing a CMake configuration file for boost_process.
+boost_process_DIR:PATH=/usr/local/lib/cmake/boost_process-1.87.0
+
 //The directory containing a CMake configuration file for boost_system.
 boost_system_DIR:PATH=/usr/local/lib/cmake/boost_system-1.87.0
+
+//The directory containing a CMake configuration file for boost_uuid.
+boost_uuid_DIR:PATH=boost_uuid_DIR-NOTFOUND
 
 //Value Computed by CMake
 core_BINARY_DIR:STATIC=/mnt/d/git_project/CurseProject2/cmake-build-debug/core
@@ -410,9 +432,19 @@ CMAKE_UNAME:INTERNAL=/usr/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding Boost
-FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/local/lib/cmake/Boost-1.87.0/BoostConfig.cmake][cfound components: system ][v1.87.0()]
+FIND_PACKAGE_MESSAGE_DETAILS_Boost:INTERNAL=[/usr/local/lib/cmake/Boost-1.87.0/BoostConfig.cmake][cfound components: filesystem system process ][v1.87.0(1.87.0)]
+//ADVANCED property for variable: boost_atomic_DIR
+boost_atomic_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_context_DIR
+boost_context_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_date_time_DIR
+boost_date_time_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_filesystem_DIR
+boost_filesystem_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: boost_headers_DIR
 boost_headers_DIR-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: boost_process_DIR
+boost_process_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: boost_system_DIR
 boost_system_DIR-ADVANCED:INTERNAL=1
 

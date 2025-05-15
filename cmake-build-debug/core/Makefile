@@ -130,29 +130,29 @@ core/fast:
 	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f core/CMakeFiles/core.dir/build.make core/CMakeFiles/core.dir/build
 .PHONY : core/fast
 
-library.o: library.cpp.o
-.PHONY : library.o
+base64.o: base64.cpp.o
+.PHONY : base64.o
 
 # target to build an object file
-library.cpp.o:
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f core/CMakeFiles/core.dir/build.make core/CMakeFiles/core.dir/library.cpp.o
-.PHONY : library.cpp.o
+base64.cpp.o:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f core/CMakeFiles/core.dir/build.make core/CMakeFiles/core.dir/base64.cpp.o
+.PHONY : base64.cpp.o
 
-library.i: library.cpp.i
-.PHONY : library.i
+base64.i: base64.cpp.i
+.PHONY : base64.i
 
 # target to preprocess a source file
-library.cpp.i:
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f core/CMakeFiles/core.dir/build.make core/CMakeFiles/core.dir/library.cpp.i
-.PHONY : library.cpp.i
+base64.cpp.i:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f core/CMakeFiles/core.dir/build.make core/CMakeFiles/core.dir/base64.cpp.i
+.PHONY : base64.cpp.i
 
-library.s: library.cpp.s
-.PHONY : library.s
+base64.s: base64.cpp.s
+.PHONY : base64.s
 
 # target to generate assembly for a file
-library.cpp.s:
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f core/CMakeFiles/core.dir/build.make core/CMakeFiles/core.dir/library.cpp.s
-.PHONY : library.cpp.s
+base64.cpp.s:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f core/CMakeFiles/core.dir/build.make core/CMakeFiles/core.dir/base64.cpp.s
+.PHONY : base64.cpp.s
 
 # Help Target
 help:
@@ -163,9 +163,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... core"
-	@echo "... library.o"
-	@echo "... library.i"
-	@echo "... library.s"
+	@echo "... base64.o"
+	@echo "... base64.i"
+	@echo "... base64.s"
 .PHONY : help
 
 

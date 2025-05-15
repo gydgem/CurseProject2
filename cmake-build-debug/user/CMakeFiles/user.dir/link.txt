@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/user.dir/main.cpp.o -o user  -Wl,-rpath,/usr/local/lib /usr/local/lib/libboost_system.so.1.87.0 ../core/libcore.a 
+/usr/bin/c++ -g CMakeFiles/user.dir/main.cpp.o -o user  -Wl,-rpath,/usr/local/lib ../core/libcore.a /usr/local/lib/libboost_process.so.1.87.0 /usr/local/lib/libboost_filesystem.so.1.87.0 /usr/local/lib/libboost_system.so.1.87.0 /usr/local/lib/libboost_atomic.so.1.87.0 /usr/local/lib/libboost_context.so.1.87.0 /usr/local/lib/libboost_date_time.so.1.87.0 

@@ -111,26 +111,26 @@ server/CMakeFiles/server.dir/Session.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Session.cpp.s"
 	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/server && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/git_project/CurseProject2/server/Session.cpp -o CMakeFiles/server.dir/Session.cpp.s
 
-server/CMakeFiles/server.dir/RequestHandler.cpp.o: server/CMakeFiles/server.dir/flags.make
-server/CMakeFiles/server.dir/RequestHandler.cpp.o: ../server/RequestHandler.cpp
-server/CMakeFiles/server.dir/RequestHandler.cpp.o: server/CMakeFiles/server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/git_project/CurseProject2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object server/CMakeFiles/server.dir/RequestHandler.cpp.o"
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/server && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT server/CMakeFiles/server.dir/RequestHandler.cpp.o -MF CMakeFiles/server.dir/RequestHandler.cpp.o.d -o CMakeFiles/server.dir/RequestHandler.cpp.o -c /mnt/d/git_project/CurseProject2/server/RequestHandler.cpp
+server/CMakeFiles/server.dir/Workspace.cpp.o: server/CMakeFiles/server.dir/flags.make
+server/CMakeFiles/server.dir/Workspace.cpp.o: ../server/Workspace.cpp
+server/CMakeFiles/server.dir/Workspace.cpp.o: server/CMakeFiles/server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/git_project/CurseProject2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object server/CMakeFiles/server.dir/Workspace.cpp.o"
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/server && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT server/CMakeFiles/server.dir/Workspace.cpp.o -MF CMakeFiles/server.dir/Workspace.cpp.o.d -o CMakeFiles/server.dir/Workspace.cpp.o -c /mnt/d/git_project/CurseProject2/server/Workspace.cpp
 
-server/CMakeFiles/server.dir/RequestHandler.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/RequestHandler.cpp.i"
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/server && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/git_project/CurseProject2/server/RequestHandler.cpp > CMakeFiles/server.dir/RequestHandler.cpp.i
+server/CMakeFiles/server.dir/Workspace.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/Workspace.cpp.i"
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/server && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/git_project/CurseProject2/server/Workspace.cpp > CMakeFiles/server.dir/Workspace.cpp.i
 
-server/CMakeFiles/server.dir/RequestHandler.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/RequestHandler.cpp.s"
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/server && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/git_project/CurseProject2/server/RequestHandler.cpp -o CMakeFiles/server.dir/RequestHandler.cpp.s
+server/CMakeFiles/server.dir/Workspace.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/Workspace.cpp.s"
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/server && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/git_project/CurseProject2/server/Workspace.cpp -o CMakeFiles/server.dir/Workspace.cpp.s
 
 # Object files for target server
 server_OBJECTS = \
 "CMakeFiles/server.dir/main.cpp.o" \
 "CMakeFiles/server.dir/Server.cpp.o" \
 "CMakeFiles/server.dir/Session.cpp.o" \
-"CMakeFiles/server.dir/RequestHandler.cpp.o"
+"CMakeFiles/server.dir/Workspace.cpp.o"
 
 # External object files for target server
 server_EXTERNAL_OBJECTS =
@@ -138,10 +138,15 @@ server_EXTERNAL_OBJECTS =
 server/server: server/CMakeFiles/server.dir/main.cpp.o
 server/server: server/CMakeFiles/server.dir/Server.cpp.o
 server/server: server/CMakeFiles/server.dir/Session.cpp.o
-server/server: server/CMakeFiles/server.dir/RequestHandler.cpp.o
+server/server: server/CMakeFiles/server.dir/Workspace.cpp.o
 server/server: server/CMakeFiles/server.dir/build.make
-server/server: /usr/local/lib/libboost_system.so.1.87.0
 server/server: core/libcore.a
+server/server: /usr/local/lib/libboost_process.so.1.87.0
+server/server: /usr/local/lib/libboost_filesystem.so.1.87.0
+server/server: /usr/local/lib/libboost_system.so.1.87.0
+server/server: /usr/local/lib/libboost_atomic.so.1.87.0
+server/server: /usr/local/lib/libboost_context.so.1.87.0
+server/server: /usr/local/lib/libboost_date_time.so.1.87.0
 server/server: server/CMakeFiles/server.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/git_project/CurseProject2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable server"
 	cd /mnt/d/git_project/CurseProject2/cmake-build-debug/server && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)

@@ -3,44 +3,128 @@
 //
 
 #include "Session.h"
-#include "RequestHandler.h"
+#include "base64.h"
+#include <boost/process.hpp>
+#include <sstream>
 #include <iostream>
 
-Session::Session(tcp::socket socket) : socket_(std::move(socket)) {}
+using namespace boost::asio;
 
-void Session::start() { do_read(); }
+Session::Session(tcp::socket socket, Server &server)
+        : socket_(std::move(socket)),
+          server_(server){  // Initialize Workspace with server's io_context
+}
+
+Session::~Session() {
+    auto ptr = self_.lock();
+    if (ptr) {
+        server_.sessions_.erase(ptr);
+    }
+}
+
+void Session::start() {
+    server_.sessions_.insert(self_.lock());
+    do_read();
+}
 
 void Session::do_read() {
     auto self(shared_from_this());
-    boost::asio::async_read_until(
-            socket_, buffer_, '\n',
+    async_read_until(
+            socket_,
+            buffer_,
+            "\nEND_CMD\n", // Изменено на корректный разделитель
             [this, self](boost::system::error_code ec, size_t length) {
                 if (!ec) {
                     std::string message{
-                            boost::asio::buffers_begin(buffer_.data()),
-                            boost::asio::buffers_begin(buffer_.data()) + length - 1
+                            buffers_begin(buffer_.data()),
+                            buffers_begin(buffer_.data()) + length - 9 // Учитываем длину "\nEND_CMD\n"
                     };
                     buffer_.consume(length);
 
-                    std::cout << "Received: " << message << std::endl;
-                    std::string response = RequestHandler::process(message);
+                    std::string response = process_request(message);
 
                     do_write(response + "\n");
-                } else {
-                    if (ec != boost::asio::error::eof) {
-                        std::cerr << "Error: " << ec.message() << std::endl;
-                    }
+                } else if (ec != boost::asio::error::eof) {
+                    std::cerr << "Read error: " << ec.message() << std::endl;
                     socket_.close();
                 }
             });
 }
 
-void Session::do_write(const std::string& message) {
+std::string Session::process_request(const std::string &request) {
+    std::istringstream iss(request);
+    std::string command;
+    iss >> command;
+    std::transform(command.begin(), command.end(), command.begin(), ::toupper);
+
+    if (command == "COMMAND") {
+        std::string cmd;
+        std::getline(iss >> std::ws, cmd);
+        try {
+            return "CMD_RESULT\n" + workspace_.execute_command(cmd); // Синхронный вызов
+        } catch (const std::exception &e) {
+            return "CMD_ERROR\n" + std::string(e.what());
+        }
+    } else if (command == "UPLOAD") {
+        std::string filename, content;
+        iss >> filename;
+        std::getline(iss >> std::ws, content); // Читаем всё содержимое
+        try {
+            workspace_.upload_file(filename, content);
+            return "UPLOAD_OK";
+        } catch (...) {
+            return "UPLOAD_ERROR";
+        }
+    } else if (command == "DOWNLOAD") {
+        std::string filename;
+        iss >> filename;
+        try {
+            std::string content = workspace_.download_file(filename);
+            return "DOWNLOAD " + content; // Без base64
+        } catch (...) {
+            return "DOWNLOAD_ERROR";
+        }
+    }
+    return "ERROR: Unknown command";
+}
+
+void Session::do_write(const std::string &message) {
+    std::lock_guard<std::mutex> lock(socket_mutex_);
+    if (!socket_active_) return;
+
+    // формируем ответ с маркером конца
+    std::string framed = message + "\nEND_CMD\n";
     auto self(shared_from_this());
-    boost::asio::async_write(
-            socket_, boost::asio::buffer(message),
+    async_write(
+            socket_,
+            buffer(framed),
             [this, self](boost::system::error_code ec, size_t /*length*/) {
-                if (!ec) do_read();
-                else socket_.close();
+                std::lock_guard<std::mutex> lock(socket_mutex_);
+                if (ec) {
+                    socket_active_ = false;
+                    socket_.close();
+                    return;
+                }
+                do_read();
             });
 }
+
+
+void Session::close() {
+    std::lock_guard<std::mutex> lock(socket_mutex_);
+    if (socket_active_) {
+        socket_active_ = false;
+        boost::system::error_code ec;
+        socket_.shutdown(tcp::socket::shutdown_both, ec);
+        socket_.close(ec);
+    }
+}
+
+std::shared_ptr<Session> Session::create(tcp::socket socket, Server &server) {
+    // Создаем shared_ptr через new (нельзя использовать make_shared из-за приватного конструктора)
+    auto ptr = std::shared_ptr<Session>(new Session(std::move(socket), server));
+    // Вызываем post-инициализацию
+    ptr->self_ = ptr;
+    return ptr;
+}
+

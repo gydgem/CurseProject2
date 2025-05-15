@@ -1,10 +1,14 @@
-cmake_minimum_required(VERSION 3.22)
 project(core)
 
-add_library(core STATIC library.cpp)
+add_library(core STATIC
+        base64.cpp
+        base64.h
+)
 
-# Наследуем настройки из корневого CMakeLists.txt
-set_target_properties(core PROPERTIES
-        CXX_STANDARD 20
-        CXX_STANDARD_REQUIRED ON
+target_include_directories(core PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_link_libraries(core PUBLIC
+        Boost::boost  # Для хедеров Boost
 )

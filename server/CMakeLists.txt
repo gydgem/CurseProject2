@@ -1,19 +1,19 @@
-cmake_minimum_required(VERSION 3.22)
 project(server)
 
-find_package(Boost  REQUIRED COMPONENTS system)
+add_executable(server
+        main.cpp
+        Server.cpp Server.h
+        Session.cpp Session.h
+        Workspace.cpp Workspace.h
+)
 
-add_executable(server main.cpp
-        Server.cpp
-        Server.h
-        Session.cpp
-        Session.h
-        RequestHandler.cpp
-        RequestHandler.h)
+target_include_directories(server PRIVATE
+        ${CMAKE_SOURCE_DIR}/core
+)
 
-target_link_libraries(server
-        PRIVATE
-        Boost::boost
-        Boost::system
+target_link_libraries(server PRIVATE
         core
+        Boost::filesystem
+        Boost::system
+        Boost::process
 )

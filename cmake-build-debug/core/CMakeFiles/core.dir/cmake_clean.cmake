@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/core.dir/library.cpp.o"
-  "CMakeFiles/core.dir/library.cpp.o.d"
+  "CMakeFiles/core.dir/base64.cpp.o"
+  "CMakeFiles/core.dir/base64.cpp.o.d"
   "libcore.a"
   "libcore.pdb"
 )

@@ -1,13 +1,16 @@
-cmake_minimum_required(VERSION 3.22)
 project(user)
 
-find_package(Boost REQUIRED COMPONENTS system)
+add_executable(user
+        main.cpp
+)
 
-add_executable(user main.cpp)
+target_include_directories(user PRIVATE
+        ${CMAKE_SOURCE_DIR}/core
+)
 
-target_link_libraries(user
-        PRIVATE
-        Boost::boost
-        Boost::system
+target_link_libraries(user PRIVATE
         core
+        Boost::filesystem
+        Boost::system
+        Boost::process
 )

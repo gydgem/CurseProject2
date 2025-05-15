@@ -130,30 +130,6 @@ server/fast:
 	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/build
 .PHONY : server/fast
 
-RequestHandler.o: RequestHandler.cpp.o
-.PHONY : RequestHandler.o
-
-# target to build an object file
-RequestHandler.cpp.o:
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/RequestHandler.cpp.o
-.PHONY : RequestHandler.cpp.o
-
-RequestHandler.i: RequestHandler.cpp.i
-.PHONY : RequestHandler.i
-
-# target to preprocess a source file
-RequestHandler.cpp.i:
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/RequestHandler.cpp.i
-.PHONY : RequestHandler.cpp.i
-
-RequestHandler.s: RequestHandler.cpp.s
-.PHONY : RequestHandler.s
-
-# target to generate assembly for a file
-RequestHandler.cpp.s:
-	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/RequestHandler.cpp.s
-.PHONY : RequestHandler.cpp.s
-
 Server.o: Server.cpp.o
 .PHONY : Server.o
 
@@ -202,6 +178,30 @@ Session.cpp.s:
 	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/Session.cpp.s
 .PHONY : Session.cpp.s
 
+Workspace.o: Workspace.cpp.o
+.PHONY : Workspace.o
+
+# target to build an object file
+Workspace.cpp.o:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/Workspace.cpp.o
+.PHONY : Workspace.cpp.o
+
+Workspace.i: Workspace.cpp.i
+.PHONY : Workspace.i
+
+# target to preprocess a source file
+Workspace.cpp.i:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/Workspace.cpp.i
+.PHONY : Workspace.cpp.i
+
+Workspace.s: Workspace.cpp.s
+.PHONY : Workspace.s
+
+# target to generate assembly for a file
+Workspace.cpp.s:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/Workspace.cpp.s
+.PHONY : Workspace.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -235,15 +235,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... server"
-	@echo "... RequestHandler.o"
-	@echo "... RequestHandler.i"
-	@echo "... RequestHandler.s"
 	@echo "... Server.o"
 	@echo "... Server.i"
 	@echo "... Server.s"
 	@echo "... Session.o"
 	@echo "... Session.i"
 	@echo "... Session.s"
+	@echo "... Workspace.o"
+	@echo "... Workspace.i"
+	@echo "... Workspace.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

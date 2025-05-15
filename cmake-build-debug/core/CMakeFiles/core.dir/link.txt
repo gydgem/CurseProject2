@@ -1,2 +1,2 @@
-/usr/bin/ar qc libcore.a CMakeFiles/core.dir/library.cpp.o
+/usr/bin/ar qc libcore.a CMakeFiles/core.dir/base64.cpp.o
 /usr/bin/ranlib libcore.a
