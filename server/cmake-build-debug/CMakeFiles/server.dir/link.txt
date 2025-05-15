@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/server.dir/main.cpp.o -o server  -Wl,-rpath,/usr/local/lib /usr/local/lib/libboost_system.so.1.87.0 
