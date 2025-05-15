@@ -1,3 +1,0 @@
-/mnt/d/git_project/CurseProject2/user/cmake-build-debug/CMakeFiles/user.dir
-/mnt/d/git_project/CurseProject2/user/cmake-build-debug/CMakeFiles/edit_cache.dir
-/mnt/d/git_project/CurseProject2/user/cmake-build-debug/CMakeFiles/rebuild_cache.dir
