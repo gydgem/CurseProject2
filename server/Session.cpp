@@ -12,7 +12,7 @@ using namespace boost::asio;
 
 Session::Session(tcp::socket socket, Server &server)
         : socket_(std::move(socket)),
-          server_(server){  // Initialize Workspace with server's io_context
+          server_(server) {
 }
 
 Session::~Session() {
@@ -32,12 +32,12 @@ void Session::do_read() {
     async_read_until(
             socket_,
             buffer_,
-            "\nEND_CMD\n", // Изменено на корректный разделитель
+            "\nEND_CMD\n",
             [this, self](boost::system::error_code ec, size_t length) {
                 if (!ec) {
                     std::string message{
                             buffers_begin(buffer_.data()),
-                            buffers_begin(buffer_.data()) + length - 9 // Учитываем длину "\nEND_CMD\n"
+                            buffers_begin(buffer_.data()) + length - 9
                     };
                     buffer_.consume(length);
 
@@ -61,14 +61,14 @@ std::string Session::process_request(const std::string &request) {
         std::string cmd;
         std::getline(iss >> std::ws, cmd);
         try {
-            return "CMD_RESULT\n" + workspace_.execute_command(cmd); // Синхронный вызов
+            return "CMD_RESULT\n" + workspace_.execute_command(cmd);
         } catch (const std::exception &e) {
             return "CMD_ERROR\n" + std::string(e.what());
         }
     } else if (command == "UPLOAD") {
         std::string filename, content;
         iss >> filename;
-        std::getline(iss >> std::ws, content); // Читаем всё содержимое
+        std::getline(iss >> std::ws, content);
         try {
             workspace_.upload_file(filename, content);
             return "UPLOAD_OK";
@@ -92,7 +92,6 @@ void Session::do_write(const std::string &message) {
     std::lock_guard<std::mutex> lock(socket_mutex_);
     if (!socket_active_) return;
 
-    // формируем ответ с маркером конца
     std::string framed = message + "\nEND_CMD\n";
     auto self(shared_from_this());
     async_write(
@@ -121,9 +120,7 @@ void Session::close() {
 }
 
 std::shared_ptr<Session> Session::create(tcp::socket socket, Server &server) {
-    // Создаем shared_ptr через new (нельзя использовать make_shared из-за приватного конструктора)
     auto ptr = std::shared_ptr<Session>(new Session(std::move(socket), server));
-    // Вызываем post-инициализацию
     ptr->self_ = ptr;
     return ptr;
 }

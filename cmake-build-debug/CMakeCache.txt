@@ -246,6 +246,15 @@ boost_system_DIR:PATH=/usr/local/lib/cmake/boost_system-1.87.0
 boost_uuid_DIR:PATH=boost_uuid_DIR-NOTFOUND
 
 //Value Computed by CMake
+client_BINARY_DIR:STATIC=/mnt/d/git_project/CurseProject2/cmake-build-debug/client
+
+//Value Computed by CMake
+client_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+client_SOURCE_DIR:STATIC=/mnt/d/git_project/CurseProject2/client
+
+//Value Computed by CMake
 core_BINARY_DIR:STATIC=/mnt/d/git_project/CurseProject2/cmake-build-debug/core
 
 //Value Computed by CMake
@@ -273,13 +282,13 @@ server_IS_TOP_LEVEL:STATIC=OFF
 server_SOURCE_DIR:STATIC=/mnt/d/git_project/CurseProject2/server
 
 //Value Computed by CMake
-user_BINARY_DIR:STATIC=/mnt/d/git_project/CurseProject2/cmake-build-debug/user
+user_BINARY_DIR:STATIC=/mnt/d/git_project/CurseProject2/cmake-build-debug/client
 
 //Value Computed by CMake
 user_IS_TOP_LEVEL:STATIC=OFF
 
 //Value Computed by CMake
-user_SOURCE_DIR:STATIC=/mnt/d/git_project/CurseProject2/user
+user_SOURCE_DIR:STATIC=/mnt/d/git_project/CurseProject2/client
 
 
 ########################

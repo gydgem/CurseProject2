@@ -5,50 +5,61 @@
 namespace fs = boost::filesystem;
 namespace bp = boost::process;
 
-// Статический счетчик для генерации уникальных ID сессий
 static std::atomic<int> session_counter{0};
 
 void Workspace::validate_path(const fs::path &file_path) const {
-    // Проверяем что путь находится внутри рабочей директории
     auto relative = fs::relative(file_path, path_);
     if (relative.empty() || *relative.begin() == "..") {
         throw std::runtime_error("Invalid file path");
     }
 }
 
-// Workspace.cpp (исправленный метод execute_command)
 std::string Workspace::execute_command(const std::string &command) {
-    try {
-        bp::ipstream stdout_stream;
-        bp::ipstream stderr_stream;
-        bp::child c(
-                "/bin/bash",  // Явно указываем bash
-                bp::args({"-c", command}),
-                bp::std_out > stdout_stream,
-                bp::std_err > stderr_stream,  // Разделяем stdout и stderr
-                bp::start_dir(path_.string()),
-                bp::std_in.close()  // Закрываем stdin
-        );
+    if (command.substr(0, 3) == "cd ") {
+        std::string dir = command.substr(3);
+        fs::path new_dir = (current_directory_ / dir).lexically_normal();
 
-        // Читаем вывод асинхронно
-        std::stringstream output;
-        std::string line;
-
-        // Читаем stdout
-        while (stdout_stream && std::getline(stdout_stream, line)) {
-            output << line << "\n";
+        auto relative = fs::relative(new_dir, path_);
+        if (relative.empty() || *relative.begin() == "..") {
+            return "Error: Cannot change directory outside workspace.\n";
         }
 
-        // Читаем stderr
-        while (stderr_stream && std::getline(stderr_stream, line)) {
-            output << "[stderr] " << line << "\n";
+        if (!fs::exists(new_dir) || !fs::is_directory(new_dir)) {
+            return "Error: Directory does not exist.\n";
         }
 
-        c.wait();
-        output << "\nExit code: " << c.exit_code();
-        return output.str();
-    } catch (const bp::process_error &e) {
-        return "Process error: " + std::string(e.what());
+        current_directory_ = new_dir;
+        return "Changed directory to: " + current_directory_.string() + "\n";
+    } else {
+        try {
+            bp::ipstream stdout_stream;
+            bp::ipstream stderr_stream;
+            bp::child c(
+                    "/bin/bash",
+                    bp::args({"-c", command}),
+                    bp::std_out > stdout_stream,
+                    bp::std_err > stderr_stream,
+                    bp::start_dir(current_directory_.string()),
+                    bp::std_in.close()
+            );
+
+            std::stringstream output;
+            std::string line;
+
+            while (stdout_stream && std::getline(stdout_stream, line)) {
+                output << line << "\n";
+            }
+
+            while (stderr_stream && std::getline(stderr_stream, line)) {
+                output << "[stderr] " << line << "\n";
+            }
+
+            c.wait();
+            output << "\nExit code: " << c.exit_code();
+            return output.str();
+        } catch (const bp::process_error &e) {
+            return "Process error: " + std::string(e.what());
+        }
     }
 }
 
@@ -84,6 +95,7 @@ Workspace::Workspace() {
     fs::create_directories("workspaces");
     path_ = fs::path("workspaces") / ("session_" + std::to_string(++session_counter));
     fs::create_directories(path_);
+    current_directory_ = path_;
 }
 
 

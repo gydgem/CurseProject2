@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "../CMakeLists.txt"
+  "../client/CMakeLists.txt"
   "CMakeFiles/3.22.1/CMakeCCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.22.1/CMakeSystem.cmake"
   "../core/CMakeLists.txt"
   "../server/CMakeLists.txt"
-  "../user/CMakeLists.txt"
   "/usr/local/lib/cmake/Boost-1.87.0/BoostConfig.cmake"
   "/usr/local/lib/cmake/Boost-1.87.0/BoostConfigVersion.cmake"
   "/usr/local/lib/cmake/BoostDetectToolset-1.87.0.cmake"
@@ -76,12 +76,12 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "core/CMakeFiles/CMakeDirectoryInformation.cmake"
   "server/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "user/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "client/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "core/CMakeFiles/core.dir/DependInfo.cmake"
   "server/CMakeFiles/server.dir/DependInfo.cmake"
-  "user/CMakeFiles/user.dir/DependInfo.cmake"
+  "client/CMakeFiles/client.dir/DependInfo.cmake"
   )

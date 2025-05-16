@@ -17,8 +17,8 @@ class Session : public std::enable_shared_from_this<Session> {
 public:
     friend class Server;
 private:
-    Session(tcp::socket socket, Server& server); // Делаем конструктор приватным
-    std::weak_ptr<Session> self_; // Добавляем weak_ptr на себя
+    Session(tcp::socket socket, Server& server);
+    std::weak_ptr<Session> self_;
 
 public:
     ~Session();
@@ -35,8 +35,8 @@ private:
     tcp::socket socket_;
     boost::asio::streambuf buffer_;
     Workspace workspace_;
-    std::mutex socket_mutex_;  // Мьютекс для синхронизации доступа к сокету
-    bool socket_active_ = true; // Флаг состояния сокета
+    std::mutex socket_mutex_;
+    bool socket_active_ = true;
 };
 
 

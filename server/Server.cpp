@@ -55,14 +55,12 @@ void Server::handle_command(const std::string &command) {
 void Server::stop() {
     std::cout << "Initiating graceful shutdown...\n";
 
-    // 1. Закрываем акцептор
     boost::system::error_code ec;
     acceptor_.close(ec);
     if (ec) {
         std::cerr << "Acceptor close error: " << ec.message() << "\n";
     }
 
-    // 2. Закрываем все активные сессии
     std::vector<std::shared_ptr<Session>> sessions_copy;
     {
         sessions_copy.reserve(sessions_.size());
@@ -75,10 +73,8 @@ void Server::stop() {
         session->close();
     }
 
-    // 3. Останавливаем контекст только после очистки
     io_context_.stop();
 }
-// Остальные методы без изменений
 
 void Server::start_accept() {
     acceptor_.async_accept(

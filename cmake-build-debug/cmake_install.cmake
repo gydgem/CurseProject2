@@ -54,7 +54,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/mnt/d/git_project/CurseProject2/cmake-build-debug/user/cmake_install.cmake")
+  include("/mnt/d/git_project/CurseProject2/cmake-build-debug/client/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

@@ -29,4 +29,5 @@ private:
     void validate_path(const fs::path& file_path) const;
 
     fs::path path_;
+    fs::path current_directory_;
 };

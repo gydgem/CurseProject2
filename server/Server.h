@@ -26,7 +26,6 @@ private:
     std::unordered_set<std::shared_ptr<class Session>> sessions_;
 
 
-    // Для асинхронного чтения из консоли
     boost::asio::posix::stream_descriptor console_input_;
     boost::asio::streambuf console_buffer_;
 };

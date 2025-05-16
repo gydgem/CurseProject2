@@ -9,4 +9,4 @@ find_package(Boost 1.87.0 REQUIRED COMPONENTS filesystem system process)
 
 add_subdirectory(core)
 add_subdirectory(server)
-add_subdirectory(user)
+add_subdirectory(client)
