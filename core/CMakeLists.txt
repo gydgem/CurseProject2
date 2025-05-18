@@ -1,14 +1,11 @@
 project(core)
 
-add_library(core STATIC
-        base64.cpp
-        base64.h
-)
+add_library(core INTERFACE)
 
-target_include_directories(core PUBLIC
+target_include_directories(core INTERFACE
         ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_link_libraries(core PUBLIC
-        Boost::boost  # Для хедеров Boost
+target_link_libraries(core INTERFACE
+        Boost::headers
 )

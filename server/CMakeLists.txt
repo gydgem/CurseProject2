@@ -2,9 +2,18 @@ project(server)
 
 add_executable(server
         main.cpp
-        Server.cpp Server.h
-        Session.cpp Session.h
-        Workspace.cpp Workspace.h
+        Server.cpp
+        Server.h
+        Session.cpp
+        Session.h
+        Workspace.cpp
+        Workspace.h
+        ZoneManager.cpp
+        ZoneManager.h
+        command_handlers/ServerCommandHandler.cpp
+        command_handlers/ServerCommandHandler.h
+        command_handlers/SessionCommandHandler.cpp
+        command_handlers/SessionCommandHandler.h
 )
 
 target_include_directories(server PRIVATE

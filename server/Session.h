@@ -6,12 +6,18 @@
 #define NETWORK_APP_SESSION_H
 
 
-#include <boost/asio.hpp>
 #include <memory>
+#include <sstream>
+#include <iostream>
+#include <boost/asio.hpp>
+#include <boost/process.hpp>
 #include "Workspace.h"
-#include "Server.h"
+//#include "Server.h"
+#include "command_handlers/SessionCommandHandler.h"
+
 
 using boost::asio::ip::tcp;
+class Server;
 
 class Session : public std::enable_shared_from_this<Session> {
 public:
@@ -30,6 +36,7 @@ private:
     void do_read();
     void do_write(const std::string& message);
     std::string process_request(const std::string& request);
+    SessionCommandHandler createCommandHandler();
 
     Server& server_;
     tcp::socket socket_;
@@ -37,6 +44,7 @@ private:
     Workspace workspace_;
     std::mutex socket_mutex_;
     bool socket_active_ = true;
+    std::string current_zone_;
 };
 
 

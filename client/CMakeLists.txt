@@ -4,6 +4,8 @@ add_executable(client
         main.cpp
         Client.cpp
         Client.h
+        UserCommandHandler.cpp
+        UserCommandHandler.h
 )
 
 target_include_directories(client PRIVATE
@@ -12,7 +14,5 @@ target_include_directories(client PRIVATE
 
 target_link_libraries(client PRIVATE
         core
-        Boost::filesystem
         Boost::system
-        Boost::process
 )

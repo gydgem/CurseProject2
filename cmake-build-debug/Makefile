@@ -117,19 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named core
-
-# Build rule for target.
-core: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 core
-.PHONY : core
-
-# fast build rule for target.
-core/fast:
-	$(MAKE) $(MAKESILENT) -f core/CMakeFiles/core.dir/build.make core/CMakeFiles/core.dir/build
-.PHONY : core/fast
-
-#=============================================================================
 # Target rules for targets named server
 
 # Build rule for target.
@@ -164,7 +151,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... client"
-	@echo "... core"
 	@echo "... server"
 .PHONY : help
 

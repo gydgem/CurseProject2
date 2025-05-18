@@ -202,6 +202,78 @@ Workspace.cpp.s:
 	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/Workspace.cpp.s
 .PHONY : Workspace.cpp.s
 
+ZoneManager.o: ZoneManager.cpp.o
+.PHONY : ZoneManager.o
+
+# target to build an object file
+ZoneManager.cpp.o:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/ZoneManager.cpp.o
+.PHONY : ZoneManager.cpp.o
+
+ZoneManager.i: ZoneManager.cpp.i
+.PHONY : ZoneManager.i
+
+# target to preprocess a source file
+ZoneManager.cpp.i:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/ZoneManager.cpp.i
+.PHONY : ZoneManager.cpp.i
+
+ZoneManager.s: ZoneManager.cpp.s
+.PHONY : ZoneManager.s
+
+# target to generate assembly for a file
+ZoneManager.cpp.s:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/ZoneManager.cpp.s
+.PHONY : ZoneManager.cpp.s
+
+command_handlers/ServerCommandHandler.o: command_handlers/ServerCommandHandler.cpp.o
+.PHONY : command_handlers/ServerCommandHandler.o
+
+# target to build an object file
+command_handlers/ServerCommandHandler.cpp.o:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/command_handlers/ServerCommandHandler.cpp.o
+.PHONY : command_handlers/ServerCommandHandler.cpp.o
+
+command_handlers/ServerCommandHandler.i: command_handlers/ServerCommandHandler.cpp.i
+.PHONY : command_handlers/ServerCommandHandler.i
+
+# target to preprocess a source file
+command_handlers/ServerCommandHandler.cpp.i:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/command_handlers/ServerCommandHandler.cpp.i
+.PHONY : command_handlers/ServerCommandHandler.cpp.i
+
+command_handlers/ServerCommandHandler.s: command_handlers/ServerCommandHandler.cpp.s
+.PHONY : command_handlers/ServerCommandHandler.s
+
+# target to generate assembly for a file
+command_handlers/ServerCommandHandler.cpp.s:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/command_handlers/ServerCommandHandler.cpp.s
+.PHONY : command_handlers/ServerCommandHandler.cpp.s
+
+command_handlers/SessionCommandHandler.o: command_handlers/SessionCommandHandler.cpp.o
+.PHONY : command_handlers/SessionCommandHandler.o
+
+# target to build an object file
+command_handlers/SessionCommandHandler.cpp.o:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/command_handlers/SessionCommandHandler.cpp.o
+.PHONY : command_handlers/SessionCommandHandler.cpp.o
+
+command_handlers/SessionCommandHandler.i: command_handlers/SessionCommandHandler.cpp.i
+.PHONY : command_handlers/SessionCommandHandler.i
+
+# target to preprocess a source file
+command_handlers/SessionCommandHandler.cpp.i:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/command_handlers/SessionCommandHandler.cpp.i
+.PHONY : command_handlers/SessionCommandHandler.cpp.i
+
+command_handlers/SessionCommandHandler.s: command_handlers/SessionCommandHandler.cpp.s
+.PHONY : command_handlers/SessionCommandHandler.s
+
+# target to generate assembly for a file
+command_handlers/SessionCommandHandler.cpp.s:
+	cd /mnt/d/git_project/CurseProject2/cmake-build-debug && $(MAKE) $(MAKESILENT) -f server/CMakeFiles/server.dir/build.make server/CMakeFiles/server.dir/command_handlers/SessionCommandHandler.cpp.s
+.PHONY : command_handlers/SessionCommandHandler.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -244,6 +316,15 @@ help:
 	@echo "... Workspace.o"
 	@echo "... Workspace.i"
 	@echo "... Workspace.s"
+	@echo "... ZoneManager.o"
+	@echo "... ZoneManager.i"
+	@echo "... ZoneManager.s"
+	@echo "... command_handlers/ServerCommandHandler.o"
+	@echo "... command_handlers/ServerCommandHandler.i"
+	@echo "... command_handlers/ServerCommandHandler.s"
+	@echo "... command_handlers/SessionCommandHandler.o"
+	@echo "... command_handlers/SessionCommandHandler.i"
+	@echo "... command_handlers/SessionCommandHandler.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -21,7 +21,6 @@ std::string Client::send_command(const std::string &request) {
     std::string response;
     std::getline(is, response, '\0');
 
-    // Обрезаем маркер конца
     size_t end_pos = response.rfind("\nEND_CMD");
     if (end_pos != std::string::npos) {
         response = response.substr(0, end_pos);
@@ -52,7 +51,7 @@ void Client::download_file(const std::string &remote_filename, const std::string
     std::string response = send_command("DOWNLOAD " + remote_filename);
     if (response.substr(0, 9) == "DOWNLOAD ") {
         std::ofstream file(local_path);
-        file << response.substr(9); // Без декодирования
+        file << response.substr(9);
     } else {
         throw std::runtime_error(response);
     }

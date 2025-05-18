@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/mnt/d/git_project/CurseProject2/core/base64.cpp" "core/CMakeFiles/core.dir/base64.cpp.o" "gcc" "core/CMakeFiles/core.dir/base64.cpp.o.d"
   )
 
 # Targets to which this target links.

@@ -91,11 +91,9 @@ std::string Workspace::download_file(const std::string &filename) {
     );
 }
 
-Workspace::Workspace() {
-    fs::create_directories("workspaces");
-    path_ = fs::path("workspaces") / ("session_" + std::to_string(++session_counter));
+Workspace::Workspace(const fs::path &path)
+        : path_(path), current_directory_(path) {
     fs::create_directories(path_);
-    current_directory_ = path_;
 }
 
 

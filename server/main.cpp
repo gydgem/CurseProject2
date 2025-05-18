@@ -15,16 +15,16 @@ int main() {
 
         const int threads_num = 4;
         std::vector<std::thread> threads;
-        for(int i = 0; i < threads_num; ++i) {
+        for (int i = 0; i < threads_num; ++i) {
             threads.emplace_back([&io_context]() { io_context.run(); });
         }
 
-        for(auto& t : threads) {
-            if(t.joinable()) t.join();
+        for (auto &t: threads) {
+            if (t.joinable()) t.join();
         }
 
         std::cout << "Server stopped\n";
-    } catch (const std::exception& ex) {
+    } catch (const std::exception &ex) {
         std::cerr << "Exception: " << ex.what() << "\n";
     }
     return 0;

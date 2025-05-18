@@ -1,12 +1,5 @@
-//
-// Created by gydgem on 5/15/2025.
-//
-
 #include "Session.h"
-#include "base64.h"
-#include <boost/process.hpp>
-#include <sstream>
-#include <iostream>
+#include "Server.h"
 
 using namespace boost::asio;
 
@@ -16,14 +9,19 @@ Session::Session(tcp::socket socket, Server &server)
 }
 
 Session::~Session() {
+    close();
     auto ptr = self_.lock();
     if (ptr) {
+        std::lock_guard<std::mutex> lock(server_.sessions_mutex_);
         server_.sessions_.erase(ptr);
     }
 }
 
 void Session::start() {
-    server_.sessions_.insert(self_.lock());
+    {
+        std::lock_guard<std::mutex> lock(server_.sessions_mutex_);
+        server_.sessions_.insert(shared_from_this());
+    }
     do_read();
 }
 
@@ -44,55 +42,29 @@ void Session::do_read() {
                     std::string response = process_request(message);
 
                     do_write(response + "\n");
-                } else if (ec != boost::asio::error::eof) {
-                    std::cerr << "Read error: " << ec.message() << std::endl;
-                    socket_.close();
+                } else {
+                    if (ec != boost::asio::error::operation_aborted) {
+                        close();
+                        {
+                            std::lock_guard<std::mutex> lock(server_.sessions_mutex_);
+                            server_.sessions_.erase(self);
+                        }
+                    }
                 }
             });
 }
 
 std::string Session::process_request(const std::string &request) {
-    std::istringstream iss(request);
-    std::string command;
-    iss >> command;
-    std::transform(command.begin(), command.end(), command.begin(), ::toupper);
-
-    if (command == "COMMAND") {
-        std::string cmd;
-        std::getline(iss >> std::ws, cmd);
-        try {
-            return "CMD_RESULT\n" + workspace_.execute_command(cmd);
-        } catch (const std::exception &e) {
-            return "CMD_ERROR\n" + std::string(e.what());
-        }
-    } else if (command == "UPLOAD") {
-        std::string filename, content;
-        iss >> filename;
-        std::getline(iss >> std::ws, content);
-        try {
-            workspace_.upload_file(filename, content);
-            return "UPLOAD_OK";
-        } catch (...) {
-            return "UPLOAD_ERROR";
-        }
-    } else if (command == "DOWNLOAD") {
-        std::string filename;
-        iss >> filename;
-        try {
-            std::string content = workspace_.download_file(filename);
-            return "DOWNLOAD " + content; // Без base64
-        } catch (...) {
-            return "DOWNLOAD_ERROR";
-        }
-    }
-    return "ERROR: Unknown command";
+    return createCommandHandler().handleRequest(request);
 }
 
 void Session::do_write(const std::string &message) {
     std::lock_guard<std::mutex> lock(socket_mutex_);
     if (!socket_active_) return;
 
+    // Добавить создание framed сообщения
     std::string framed = message + "\nEND_CMD\n";
+
     auto self(shared_from_this());
     async_write(
             socket_,
@@ -100,8 +72,11 @@ void Session::do_write(const std::string &message) {
             [this, self](boost::system::error_code ec, size_t /*length*/) {
                 std::lock_guard<std::mutex> lock(socket_mutex_);
                 if (ec) {
-                    socket_active_ = false;
-                    socket_.close();
+                    close();
+                    {
+                        std::lock_guard<std::mutex> lock(server_.sessions_mutex_);
+                        server_.sessions_.erase(self);
+                    }
                     return;
                 }
                 do_read();
@@ -116,6 +91,11 @@ void Session::close() {
         boost::system::error_code ec;
         socket_.shutdown(tcp::socket::shutdown_both, ec);
         socket_.close(ec);
+
+        if (!current_zone_.empty()) {
+            server_.zone_manager_.leave_zone(current_zone_);
+            current_zone_.clear();
+        }
     }
 }
 
@@ -124,4 +104,11 @@ std::shared_ptr<Session> Session::create(tcp::socket socket, Server &server) {
     ptr->self_ = ptr;
     return ptr;
 }
+
+SessionCommandHandler Session::createCommandHandler() {
+    return SessionCommandHandler{
+            {current_zone_, workspace_, server_.zone_manager_}
+    };
+}
+
 

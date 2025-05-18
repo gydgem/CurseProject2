@@ -4,9 +4,7 @@
 
 // Server.cpp
 #include "Server.h"
-#include "Session.h"
-#include <iostream>
-#include <boost/asio/posix/stream_descriptor.hpp>
+#include "command_handlers/ServerCommandHandler.h"
 
 Server::Server(boost::asio::io_context &io_context, short port)
         : io_context_(io_context),
@@ -31,24 +29,12 @@ void Server::start_console_input() {
 }
 
 void Server::handle_command(const std::string &command) {
-    std::istringstream iss(command);
-    std::string cmd;
-    iss >> cmd;
+    ServerCommandHandler handler(*this);
 
-    if (command == "stop") {
-        stop();
-    } else if (command == "status") {
-        std::cout << "Active sessions: " << sessions_.size()
-                  << ", Server status: "
-                  << (acceptor_.is_open() ? "RUNNING" : "STOPPED")
-                  << "\n";
-    }else if (cmd == "help") {
-        std::cout << "Available commands:\n"
-                  << "  status - Show active sessions\n"
-                  << "  stop - Stop the server\n"
-                  << "  help - Show this help\n";
+    if (command == "help") {
+        handler.printHelp();
     } else {
-        std::cout << "Unknown command. Type 'help' for help.\n";
+        handler.handleCommand(command);
     }
 }
 
@@ -64,12 +50,12 @@ void Server::stop() {
     std::vector<std::shared_ptr<Session>> sessions_copy;
     {
         sessions_copy.reserve(sessions_.size());
-        for (auto& session : sessions_) {
+        for (auto &session: sessions_) {
             sessions_copy.push_back(session);
         }
     }
 
-    for (auto& session : sessions_copy) {
+    for (auto &session: sessions_copy) {
         session->close();
     }
 
@@ -83,7 +69,7 @@ void Server::start_accept() {
                     try {
                         auto session = Session::create(std::move(socket), *this);
                         session->start();
-                    } catch (const std::exception& e) {
+                    } catch (const std::exception &e) {
                         std::cerr << "Session creation error: " << e.what() << "\n";
                     }
                 }
